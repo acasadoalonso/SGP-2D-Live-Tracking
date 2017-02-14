@@ -8,6 +8,8 @@ $username = "ognread";
 $password = "ognread";
 $dbname = "APRSLOG";
 $today=date("ymd");
+$now=gmdate("His");
+
 require_once 'SRTMGeoTIFFReader.php';
 $lat=0; $lon=0; $clients=0; $activeFlarm=""; $offset=0;
 
@@ -31,6 +33,25 @@ $connSWIFACE = new mysqli($servername, $username, $password, $dbname);
 $connAPRSLOG = new mysqli($servername, $username, $password, "APRSLOG");
 $connOGNDB = new mysqli($servername, $username, $password, "OGNDB");
 
+if(1==1){
+	$sqlString="select DISTINCT(idflarm) as idflarm, max(time) as time from OGNDATA where date='".$today."' GROUP BY idflarm";
+	$result = $connSWIFACE->query($sqlString);
+	while($r2 = $result->fetch_assoc()) {
+		$time=$r2["time"];
+		$date=substr($today, 0,2)."/".substr($today, 2,2)."/".substr($today, 4,2)." ".substr($r2["time"], 0,2).":".substr($r2["time"], 2,2).":".substr($r2["time"], 4,2);
+		$fecha=date_create_from_format("y/m/d H:i:s", $date); //$today.$r2["time"]);
+		date_add($fecha, date_interval_create_from_date_string("-20 seconds"));
+		$time=$fecha->format("Hms");
+		$sqlString="SELECT ROUND(AVG(roclimb),1) as roclimb from OGNDATA where idflarm='".$r2["idflarm"]."' and date='".$today."' and time>=".$time;
+		//echo $sqlString;
+		$result3 = $connSWIFACE->query($sqlString);
+		while($r3 = $result3->fetch_assoc()) {
+			
+			$sqlString="update GLIDERS_POSITIONS set roclimb='".$r3["roclimb"]."' where idflarm='".$r2["idflarm"]."'";
+			$connSWIFACE->query($sqlString);
+		}
+	}
+}
 /*
 $ch = curl_init("http://ogn.planeadores.cl/node/agl.php");
 curl_setopt_array($ch, array(
