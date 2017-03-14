@@ -230,7 +230,7 @@ if($FLAG==''){
 	$sqlString="select *, flarmId as flarm, TIME_TO_SEC(TIMEDIFF(NOW(),lastFixTx)) as age, ifnull((select registration from GLIDERS where idglider=RIGHT(flarmId,6)),'') as registration, ". 
 	"ifnull((select cn from GLIDERS where idglider=RIGHT(flarmId,6)),'') as competitionName, ifnull((select Pilot from GLIDERS_PILOT where cn=competitionName),'') as pilot, ".
 	"ifnull((select type from GLIDERS where idglider=RIGHT(flarmId,6)),'') as aircraft, (select lati from RECEIVERS_STATUS where idrec=station) as stationLat , (select longi from RECEIVERS_STATUS where idrec=station) as stationLon , (select ROUND(alti) from RECEIVERS_STATUS where idrec=station) as stationAlt, 0 as ground from GLIDERS_POSITIONS where lat<=".$_GET['ne_lat']." and lat>=".$_GET['sw_lat']." and  lon<=".$_GET['ne_lon']." and lon>=".$_GET['sw_lon']." and date='".$today."' ".$todaysFlarms."".$visible." order by time desc";
-	
+	//echo $sqlString;
 	//echo $sqlString;
 	$result2 = $connSWIFACE->query($sqlString);
 	$lat=0; $lon=0;
@@ -241,6 +241,10 @@ if($FLAG==''){
 				
 				$lat=$r2["lat"];
 				$lon=$r2["lon"];
+			}
+			if($r2["source"]=="SPOT"||$r2["source"]=="SPIDER"||$r2["source"]=="LT24"){
+				$r2["station"]=$r2["source"];
+				$r2["distance"]=0;
 			}
 			$r2["climb"]=round($r2["climb"]*0.00508,1);
 			$r2["agl"]=$r2["altitude"] - ($dataReader->getElevation($r2["lat"], $r2["lon"], $interpolate=false));
