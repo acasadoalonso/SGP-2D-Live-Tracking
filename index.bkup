@@ -3,12 +3,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once 'node/mobile.detect.php';
+require_once 'mobile.detect.php';
 $detect = new Mobile_Detect;
 $deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
 
-if($deviceType=="phone") redirect("http://ogn.planeadores.cl/node/ogn.phone");
-if($deviceType!="phone") redirect("http://ogn.planeadores.cl/node/ogn.desktop");
+if($deviceType=="phone") redirect("http://ogn.planeadores.cl/node/ogn.phone.php");
+if($deviceType!="phone") redirect("http://ogn.planeadores.cl/node/ogn.desktop.php");
 
 function redirect($url, $statusCode = 303)
 {
