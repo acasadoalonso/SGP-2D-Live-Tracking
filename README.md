@@ -1,2 +1,1 @@
-# ogn-planeadores-cl
-# ogn-planeadores-cl
+# SGP LiveTrack 2D system

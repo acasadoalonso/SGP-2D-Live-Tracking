@@ -1,7 +1,12 @@
 var util = require("util"),
     http = require("http");
 
-var request = require("request")
+var fs = require('fs'),
+    ini = require('ini');
+var request = require("request");
+var config  = ini.parse(fs.readFileSync('/etc/local/APRSconfig.ini', 'utf-8'))
+var appurl  =  config.server.AppUrl;
+var areaogn =  config.server.AppArea;
 
 var io = require('socket.io')(81);
 var sockets=0, desktop=0, mobile=0;
@@ -32,13 +37,12 @@ io.on('connection', function (socket) {
 });
 
 setInterval(function(){
-	var url="http://ogn.planeadores.cl/node/data.php?clients=" + sockets +
-	"&ne_lat=-28.54884935985445&ne_lon=-64.9780884765625&sw_lat=-37.215482093298604&sw_lon=-77.5464478515625&activeFlarm="
+	var url=appurl + "/node/data.php?clients=" + sockets + areaogn;
 	request(url, function(err, resp, body){
 	  try{io.sockets.emit("data", JSON.parse(body));}catch(e){}
 	});
 	
-},1500)
+},2000)
 
 net = require('net');
 

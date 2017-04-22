@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Changelog for Kendo UI Professional v2016.1.112 (January 12, 2016)</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font: .75em/1.5 Tahoma, sans-serif;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            font-size: normal;
+        }
+
+        h2 {
+            font-size: 2em;
+            font-weight: normal;
+
+            margin: 1.2em 0 .3em;
+            padding-bottom: .2em;
+        }
+
+        .breaking {
+            background-color: #e10c01;
+            color: #fff;
+            border-radius: 3px;
+            padding: 3px 4px;
+            display: inline-block;
+            font-size: 11px;
+            line-height: 1;
+            font-weight: bold;
+        }
+
+        #page {
+            width: 50em;
+            margin: 0 auto 2em;
+            border-radius: 0 0 1em 1em;
+            box-shadow: 0 0 10px #ccc;
+            padding: 1em 2em 2em;
+        }
+
+        .poBoxIcon {
+            float: left;
+            font-size: 2em;
+            margin: 1.2em .5em 0 0;
+        }
+
+        .poTopLine {
+            border-top: 2px solid #e1e1e1;
+            margin: 17px 0 40px 0;
+        }
+    </style>
+
+    <base href="http://www.telerik.com/support/whats-new/kendo-ui-web/release-history">
+</head>
+<body>
+    <div id="page">
+        <h1 class="title">Release notes for Kendo UI Professional v2016.1.112</h1>
+
+        <h1>Components</h1>
+        <div class="tClear poTopLine">
+            <div class="poBoxIconText">
+                <p><strong>What's new</strong></p>
+<ul>
+<li><span class='breaking'>Breaking</span> Utilize browser `click` event for taps where appropriate</li>
+<li><span class='breaking'>Breaking</span> Default verticalAlign changed to bottom to match Excel behavior</li>
+<li>Add styles for indeterminate state of styled checkboxes</li>
+<li>New App Template: Dashboard</li>
+</ul>
+                <p><strong>What's fixed</strong></p>
+<ul>
+<li>Popup widget re-positions incorrectly when anchor is near the page bottom </li>
+<li>IE8: JS error when kendo is loaded</li>
+<li>firstDay should be Sunday in en-US culture</li>
+<li>The hierarchical demo for Mobile ListView is missing navbar</li>
+<li>Editor will not print its contents in read-only mode</li>
+<li>Combobox, DropDownList, DatePicker have incorrect styles when placed in PanelBar</li>
+<li>Source maps point to the incorrect location in source code</li>
+</ul>
+            </div>
+        </div>
+
+
+        <div class="tClear poTopLine">
+            <h2>AngularJS</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>ng-model binding honors autoBind:false configuration of the widget</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget doesn't respect model clear/reset</li>
+<li>Widget binds DataSource when value is null</li>
+<li>Widget does not update ng-model accordingly</li>
+<li>Widget selects the first item if k-ng-model value is not defined</li>
+<li>AngularJS Autocomplete not working on second try</li>
+<li>Widget does not reset custom option value when selection is cleared with value method</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Application</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Not able to perform native scroll on Win Phone devices</li>
+<li>Transitions in Kendo UI Mobile freeze the native scrollers in Android</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>AutoComplete</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Support re-binding when the widget popup is put in a hidden container</li>
+<li>Hide loading animation when DataSource fires its error event</li>
+<li>Popup is misplaced after device rotation</li>
+<li>Improve data request throttling in AutoComplete/ComboBox/DropDownList/MultiSelect virtualization</li>
+<li>autocomplete k-ng-model should accept object (in addition to an array)</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget loses its popup height when UL overflow-x is forced</li>
+<li>Virtualized widget focuses first item on filter incorrectly</li>
+<li>Select method does not set the text in the input</li>
+<li>Change event is triggered inconsistently when same value is set multiple times</li>
+<li>AngularJS Autocomplete not working on second try</li>
+<li>Scroll issue with virtualization</li>
+<li>Autocomplete popup toggles between top and bottom.</li>
+<li>AutoComplete styles .k-state-border-up/down do not update properly when filtering near an edge</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Calendar</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Add styles for .k-today in Calendar </li>
+<li>Implement disable dates functionalty</li>
+<li>Calendar should not animate the view when the month doesn't change</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>DatePicker does not apply correctly max value when in Brasilian timezone (GMT-03)</li>
+<li>Cannot select '1/1/1970' when UTC (Dublin) timezone is used</li>
+<li>Calendar does not navigate accordingly</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Chart</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Category axis data items are unavailable if series are bound to date field</li>
+<li>Funnel chart is not displayed correctly if there are zero values.</li>
+<li>Incorrect value axis auto min and max values when the values difference is smaller than the axis rounding</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>ComboBox</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Support re-binding when the widget popup is put in a hidden container</li>
+<li>ng-model binding honors autoBind:false configuration of the widget</li>
+<li>Widget does not cascade when the list is opened</li>
+<li>Support setting the data source and selected value separately when list is virtualized</li>
+<li>Hide loading animation when DataSource fires its error event</li>
+<li>Clear existing filters when value is set or item is selected through the API</li>
+<li>Popup is misplaced after device rotation</li>
+<li>Trigger select event is on blur. </li>
+<li>Improve data request throttling in AutoComplete/ComboBox/DropDownList/MultiSelect virtualization</li>
+<li>Widget should trigger filtering event when parent widget filters on cascade</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget doesn't respect model clear/reset</li>
+<li>Widget loses its popup height when UL overflow-x is forced</li>
+<li>Widget raises change event when value is defined through the configuration</li>
+<li>Widget binds DataSource when value is null</li>
+<li>sourceItem does not have get method (sourceItem is not an observable) in MVVM DropDownList </li>
+<li>Virtualized widget does not update model correctly after scroll</li>
+<li>Virtualized widget loses selected item when remove the applied filter</li>
+<li>Change event is triggered inconsistently when same value is set multiple times</li>
+<li>ComboBox select event ignoring e.preventDefault()</li>
+<li>ComboBox value cannot be reset via the value() method if the text property is set to an empty string. </li>
+<li>Cannot set custom value on cascading ComboBox before its dataSource is fetched</li>
+<li>ComboBox does not select the correct item on blur when "text" option is used. </li>
+<li>ComboBox should de-select item when search is initiated</li>
+<li>Scroll issue with virtualization</li>
+<li>text() method doesn't work when autoBind is set to false ( Q2 2015 )</li>
+<li>MVVM the initial value is set and auto-bind is disabled (false) it will reset the value when the widget is bound to data </li>
+<li>Autocomplete popup toggles between top and bottom.</li>
+<li>Widget does not reset custom option value when selection is cleared with value method</li>
+<li>Change event not fired on cascaded ddl with MVVM</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>DatePicker</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Implement disable dates functionalty</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>ng-model does not update after parsing the date</li>
+<li>DatePicker, TimePicker, DateTimePicker icons are incorrect when placed in a TabScript  in Nova theme</li>
+<li>DatePicker does not apply correctly max value when in Brasilian timezone (GMT-03)</li>
+<li>Cannot select '1/1/1970' when UTC (Dublin) timezone is used</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>DateTimePicker</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Implement disable dates functionalty</li>
+<li>Popup is misplaced after device rotation</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget closes on scroll when placed in Kendo Mobile View</li>
+<li>DatePicker, TimePicker, DateTimePicker icons are incorrect when placed in a TabScript  in Nova theme</li>
+<li>TimeView scrollbar mousedown closes the TimeView in IE</li>
+<li>Selecting time generates wrong date if the OS date has changed</li>
+<li>DatePicker does not apply correctly max value when in Brasilian timezone (GMT-03)</li>
+<li>Cannot select '1/1/1970' when UTC (Dublin) timezone is used</li>
+<li>If a time is necessarily set, clearing the widget's value and selecting a new date will not reset the time to 12:00 AM</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Draggable</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Drag event is not fired while autoScrolling</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Drawing</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>The Layout does not refresh the elements if the shape already has transformation</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>DropDownList</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Support re-binding when the widget popup is put in a hidden container</li>
+<li>ng-model binding honors autoBind:false configuration of the widget</li>
+<li>Copy element placeholder to the filterInput element</li>
+<li>Widget does not cascade when the list is opened</li>
+<li>Throw an exception when optionLabel does not match the valueTemplate structure</li>
+<li>Support setting the data source and selected value separately when list is virtualized</li>
+<li>Hide loading animation when DataSource fires its error event</li>
+<li>Clear existing filters when value is set or item is selected through the API</li>
+<li>Popup is misplaced after device rotation</li>
+<li>Fire the select event while user selects items through their first letter</li>
+<li>Improve "item search" functionality of the widget</li>
+<li>Widget de-selects the item if it has been deleted</li>
+<li>Improve data request throttling in AutoComplete/ComboBox/DropDownList/MultiSelect virtualization</li>
+<li>Support for custom fields when show empty value in ValueTemplate</li>
+<li>Widget should trigger filtering event when parent widget filters on cascade</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget doesn't respect model clear/reset</li>
+<li>Cannot navigate to previous items by typing letter after navigating to last item if there is option label</li>
+<li>DropDownList filter icon not shown in mobile application</li>
+<li>DropDownList rendering is broken when used inside a label with "km-label-above" class in Nova theme</li>
+<li>Widget loses its popup height when UL overflow-x is forced</li>
+<li>Cannot select 'Option label' with keyboard when filtering and virtualization are enabled</li>
+<li>Widget raises change event when value is defined through the configuration</li>
+<li>Widget binds DataSource when value is null</li>
+<li>sourceItem does not have get method (sourceItem is not an observable) in MVVM DropDownList </li>
+<li>Virtualized widget does not update model correctly after scroll</li>
+<li>Widget passes 'null' when optionLabel is focused with keyboard</li>
+<li>Change event is triggered inconsistently when same value is set multiple times</li>
+<li>Widget selects the first item if k-ng-model value is not defined</li>
+<li>Virtual DropDownList does not fire change event if the value() method is called twice</li>
+<li>Widget requires additional keypress when search quickly with the keyboard</li>
+<li>DropDownList loses focus on ESC key press</li>
+<li>Autocomplete popup toggles between top and bottom.</li>
+<li>DropDownList keyboard navigation does not work in IE.</li>
+<li>Change event not fired on cascaded ddl with MVVM</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Editor</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Prevent thumbnail caching when replacing image with the same name</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>JS error in IE after hitting backspace at end of text</li>
+<li>Excel content is pasted as image</li>
+<li>Context menu copy command copies BOM symbols</li>
+<li>Editor generates extra script tags when two script elements are already present</li>
+<li>JS error when pasting in inline editor when it is not focused</li>
+<li>IE11: JS error on Backspace</li>
+<li>Backspace in empty list item with font style removes all list formatting</li>
+<li>Fix 'Object expected' error triggered in Edge browser when destroying a TabStrip with a an Editor inside</li>
+<li>Editor iframe should assume the tabIndex value of the textarea</li>
+<li>Base64 image is stripped from content when opening the ViewHtml dialog</li>
+<li>Empty content initially renders bogus line break in FF</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Excel Export</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Add support for exporting borders</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Export to Excel not working in Edge</li>
+<li>Dates in exported Excel file can be offset by 1 hour during DST transition</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Gantt</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Gantt column sorting does not restore initial state.</li>
+<li>Gantt widget does not visualize zero values in its cells.</li>
+<li>Dependency dragging does not work when there is more than one gantt widget on the page.</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Globalization</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li><span class='breaking'>Breaking</span> Remove support for Globalization 0.1</li>
+<li>Support for '2' digit group separator</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>kendo.parseDate parses 'milliseconds' value incorrectly</li>
+<li>kendo.toString() does not return correct value for group separator</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Grid</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Dramatic performance when first time collapsing group</li>
+<li>Support for Null/NotNull and IsEmpty/IsNotEmpty(string only) filtering</li>
+<li>Fix Scaffolder WebAPI routing</li>
+<li>Search box for the values in the multi-checkbox filter</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Content is not scrolled correctly when adding new record with locked columns and createAt bottom</li>
+<li>Grid destroy doesn't clear locked* state</li>
+<li>Edge browser may scroll the page on Grid focus if the widget is only partially visible.</li>
+<li>IE scrollbar is disabled when all of the non locked columns are hidden and have more than two locked columns</li>
+<li>Cannot edit cell in IE when there a lot of cells</li>
+<li>minScreenWidth should also work for nested columns in multi-column-header scenarios</li>
+<li>Multi-column header height in a locked column is wrong when Grid is initialized in a hidden container</li>
+<li>Export to Excel not working in Edge</li>
+<li>Header cells should render a scope="col" attribute for better accessibility</li>
+<li>Header cell buttons for filter and column menus should render text for screen readers</li>
+<li>Error is raised during column reorder when grid is empty</li>
+<li>Keyboard navigation causes scrolling to top of Grid table in Edge browser</li>
+<li>grid.select method expands selection to other grids, not just the instance</li>
+<li>Dates in exported Excel file can be offset by 1 hour during DST transition</li>
+<li>FireFox: Header left-padding misaligned</li>
+<li>Grid with grouping and frozen columns applies incorrect height to the headers</li>
+<li>The ForeignColumn filter menu should support values with object that has an empty text string field</li>
+<li>Textbox in DropDownList with filter "contains" in Grid overflows</li>
+<li>Column reordering triggers a javascript error when mouse is over the arrow marker</li>
+<li>Distorted texts of Grid content with "text-overflow: ellipsis;" in PDF exported from IE</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>ListView</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Click on the loading animation triggers ListView change event</li>
+<li>Entey keypress in a password textbox should work the same way as in a plain textbox during editing</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>MVVM</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>MVVM source binding fails when the object specified in the expression is null or undefined</li>
+<li>Virtualized widget does not update model correctly after scroll</li>
+<li>Widget loses its pre-selected value when autoBind: false and options.value are defined</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Map</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Edge tiles in Bing tile layer might not always load</li>
+<li>BingLayer.imagerySet method positions layer incorrectly</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>MaskedTextBox</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Masked textbox is not correct in Bootstrap theme</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>MultiSelect</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Support re-binding when the widget popup is put in a hidden container</li>
+<li>ng-model binding honors autoBind:false configuration of the widget</li>
+<li>Support setting the data source and selected value separately when list is virtualized</li>
+<li>MultiSelect. Loading new data when using Virtualization and scrolling on the Open Dialog </li>
+<li>Hide loading animation when DataSource fires its error event</li>
+<li>Clear existing filters when value is set or item is selected through the API</li>
+<li>Popup is misplaced after device rotation</li>
+<li>Improve data request throttling in AutoComplete/ComboBox/DropDownList/MultiSelect virtualization</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget doesn't respect model clear/reset</li>
+<li>Widget loses its popup height when UL overflow-x is forced</li>
+<li>MultiSelect tag duplication when trying to deselect an item from the popup list</li>
+<li>Virtualized MultiSelect does not fire its change event if there are no initially selected values</li>
+<li>Widget loses its pre-selected value when autoBind: false and options.value are defined</li>
+<li>Change event is triggered inconsistently when same value is set multiple times</li>
+<li>Scroll issue with virtualization</li>
+<li>Autocomplete popup toggles between top and bottom.</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>PDF Export</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Default PDF Creator field now includes Kendo UI version information</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget displaces the events during PDF export</li>
+<li>DejaVu emoticons are not embedded in PDF</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Pager</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Visualization issue in Kendo Pager with Bootstrap theme</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>PanelBar</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>PanelBar nested items should not be compiled when dataSource is not present</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>PivotGrid</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>PivotGrid doesn't export non-numeric values</li>
+<li>Export to Excel not working in Edge</li>
+<li>Widget does not merge data correctly when expand second dimension of column root tuple</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>ResponsivePanel</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Responsivepanel should close when browser window is resized</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Scaffolder</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Fix Scaffolder WebAPI routing</li>
+</ul>
+            
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Scheduler</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget displaces the events during PDF export</li>
+<li>Agenda and Month view names can not be overridden </li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Slider</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget does not update ng-model accordingly</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Spreadsheet</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li><span class='breaking'>Breaking</span> Range verticalAlign method now accepts "center" instead of "middle"</li>
+<li>Add ROUND, ROUNDUP and ROUNDDOWN functions</li>
+<li>Expose default number formats through `kendo.spreadsheet.formats`</li>
+<li>Support R1C1-style references in spreadsheet formulas</li>
+<li>Implement import/export of filters from/to DPL</li>
+<li>Client-side Export to PDF</li>
+<li>Client-side Excel Import (.xlsx)</li>
+<li>Implement SheetsBar scroll to selected slot</li>
+<li>Add IFERROR function</li>
+<li>Add SUBTOTAL function</li>
+<li>Client-side export now includes borders</li>
+<li>Implement default Data Validation message</li>
+<li>Add an option to disable cell/range</li>
+<li>Implement search field for filter by value TreeView</li>
+<li>ColorPicker must have an option to revert to "Default color" (set color to null)</li>
+<li>Restrict user input based on the type of selected filter operator in the filter by condition menu</li>
+<li>Restrict filtering ranges that contain merged cells</li>
+<li>Use cursor: cell instead of arrow in spreadsheet pane</li>
+<li>Spreadsheet localization</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Suppress default action of undo/redo buttons</li>
+<li>Clearing cell content is not propagated to the DataSource</li>
+<li>Merging cells loses formulas, only keeps value</li>
+<li>Support whitespace in sheet name in formula references</li>
+<li>Sort command does not work on ranges other than complete sheet range</li>
+<li>Spreadsheet cannot import xlsx file created with client export</li>
+<li>SheetsBar is not scrollable</li>
+<li>Auto-fill of boolean values triggers JS error</li>
+<li>Retina sprite images overlap with KendoUIGlyphs font icons</li>
+<li>Dialog handlers leak for the lifetime of the widget</li>
+<li>Request to the server is not sent on Drad&amp;Drop/Autofill</li>
+<li>Datasource binding does not persist pasted content</li>
+<li>Filter menu values are populated from wrong column after freezing columns</li>
+<li>Validation does not compare values correctly when the Ignore Blank is set to true</li>
+<li>Validation does not parse Date values</li>
+<li>Validation hint title is not loaded from the validation object</li>
+<li>Validation Ignore blank option is not loaded from the validation object</li>
+<li>Sheets name method incorrectly allows setting values</li>
+<li>Cannot add cell borders to a merge cell</li>
+<li>FilterMenu cannot be opened if sheet is scrolled</li>
+<li>Completion handler in formula input remains active after the popup has closed</li>
+<li>Bad rendering of wrapped text</li>
+<li>Leading white space is trimmed when loading from JSON</li>
+<li>JS error when the grid consists of only one column</li>
+<li>Filtering blanks rows breaks the layout</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>TimePicker</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Time Picker enables the popup scrolling on a mobile device without the Kendo MobileScroller</li>
+<li>Popup is misplaced after device rotation</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Widget closes on scroll when placed in Kendo Mobile View</li>
+<li>DatePicker, TimePicker, DateTimePicker icons are incorrect when placed in a TabScript  in Nova theme</li>
+<li>TimeView scrollbar mousedown closes the TimeView in IE</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>ToolBar</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Provide ability to hide menuButtons of the SplitButton through the API</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Single togglable button in kendo.ui.Toolbar does not display with correct border radius</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Toolbar</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Arrows of overflow icon, nested tools, and split-buttons are misaligned in Material</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>TreeList</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Export to Excel not working in Edge</li>
+<li>Missing editor option from TreeList column TypeScript definition</li>
+<li>Headers are misaligned in RTL mode</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>TreeMap</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>TreeMap highlight sets gradient to the tiles</li>
+<li>templates are not compiled via angular</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>TreeView</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Improve performance when bound to many root nodes</li>
+</ul>
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Default checkboxes are in page tab order</li>
+<li>Drop over collapsed node in different TreeView does not expand correctly</li>
+<li>SetDataSource does not respect autoBind option</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Upload</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Wrong success color for uploaded files in Bootstrap theme</li>
+<li>Upload button text is not visible in IE 8</li>
+</ul>
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Validator</h2>
+            <p><strong>What's new</strong></p>
+<ul>
+<li>Add validation styles to Kendo UI Mobile themes</li>
+</ul>
+            
+        </div>
+        <div class="tClear poTopLine">
+            <h2>Window</h2>
+            
+            <p><strong>What's fixed</strong></p>
+<ul>
+<li>Window title() method gets and sets the title inconsistently with regard to HTML entity encoding</li>
+</ul>
+        </div>
+    </div>
+</body>
+</html>

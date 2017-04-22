@@ -16,6 +16,7 @@
     <script src="/node/js/socket.io.js"></script>
     <script src='/node/js/kendo/js/kendo.all.min.js'></script>
     <script src='/node/js/kendo/js/cultures/kendo.culture.es-CL.min.js'></script>
+    <script src='/node/config.js'></script>
 
 
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -650,7 +651,10 @@ var flightPath = [];
 var gotFlightTrack=0
 var tx={}, rx={}, wp={};
 var busy=false;
-var socket = io.connect('http://ogn.planeadores.cl:81', { query: "platform=desktop"});
+var appurl =getappurl();
+var appport=getappport();
+socketurl=appurl+':'+appport;
+var socket = io.connect(socketurl, { query: "platform=desktop"});
 $(document).off('click', '.colorSelector').on('click', '.colorSelector', function(){
 	$.cookie($(this).attr("type"), $(this).attr("index"))
 	$("." + $(this).attr("type")).removeClass("colorSelectorSelected")
@@ -726,9 +730,9 @@ $(function(){
 	$("#header").css("bottom", 0)
 	$("#header").hide();
 	setTimeout(function(){$("#header").css("visibility","visible")},500)
-	if(!$.cookie("lat")||isNaN($.cookie("lat"))) $.cookie("lat", -33.380167)
-	if(!$.cookie("lon")||isNaN($.cookie("lon"))) $.cookie("lon", -70.5825)
-	if(!$.cookie("zoom")||isNaN($.cookie("zoom"))) $.cookie("zoom", 12)
+	if(!$.cookie("lat")||isNaN($.cookie("lat"))) $.cookie("lat", getcenterlat())
+	if(!$.cookie("lon")||isNaN($.cookie("lon"))) $.cookie("lon", getcenterlon())
+	if(!$.cookie("zoom")||isNaN($.cookie("zoom"))) $.cookie("zoom", getcenterzoom())
 	if(!$.cookie("visible")) $.cookie("visible", "all") 
 	if(!$.cookie("mapType")) $.cookie("mapType", "roadmap")
 	
@@ -1153,7 +1157,7 @@ function setTurnPointTask(marker,data){
 var taskElements=[]
 function getTask(){
 	$.ajax({
-		url:"/node/data?FLAG=TASK",
+		url:"/node/data.php?FLAG=TASK",
 		type:"POST",
 		dataType:"json",
 		success: function(json){
@@ -1462,7 +1466,7 @@ $('#aprs').off('click').on('click', function(){
 var heatmap;
 function setHeatMap(station){
 	try{heatmap.setMap(null)}catch(e){};
-	var url="/node/data?FLAG=GETHEATMAP&station=" + station + "&offset=" + $.cookie("heatmapDate");
+	var url="/node/data.php?FLAG=GETHEATMAP&station=" + station + "&offset=" + $.cookie("heatmapDate");
 	$.ajax({
 		url:url,
 		dataType: "json",
@@ -1531,7 +1535,7 @@ $('#stationPhoto').off('click').on('click', function(){
 });
 $(document).off('click', '.moraInfoStation').on('click', '.moraInfoStation', function(){
 	$.ajax({
-		url:"data?FLAG=MOREINFOSTATION&station=" + $(this).attr('station'),
+		url:"data.php?FLAG=MOREINFOSTATION&station=" + $(this).attr('station'),
 		type:"POST",
 		success: function(data){
 			console.log(data);
@@ -2118,3 +2122,4 @@ setInterval(function(){ga_heartbeat}, 3*60*1000);
 </script>
 </body>
 </html>
+

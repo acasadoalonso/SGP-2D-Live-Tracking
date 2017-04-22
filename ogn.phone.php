@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Glider Tracking Vitacura</title>
+    <title>Glider Tracking spain</title>
     <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
   <script src="jquery.2.2.4.min.js"></script>
@@ -17,6 +17,7 @@
     
     <script src='/node/js/kendo/js/kendo.all.min.js'></script>
     <script src='/node/js/kendo/js/cultures/kendo.culture.es-CL.min.js'></script>
+    <script src='/node/config.js'></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -657,7 +658,11 @@ var flightPath = [];
 var gotFlightTrack=0
 var tx={}, rx={}, wp={};
 var busy=false;
-var socket = io.connect('http://ogn.planeadores.cl:81', { query: "platform=mobile"});
+
+var appurl = getappurl();
+var appport= getappport();
+
+var socket = io.connect($appurl.":".$appport, { query: "platform=mobile"});
 $('.visible').off('click').on('click', function(){
 	busy=true
 	$.cookie("visible", $(this).val())
