@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Glider Tracking Vitacura</title>
+    <title>Glider Tracking SGP 2D</title>
     <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
   <script src="jquery.2.2.4.min.js"></script>
@@ -730,8 +730,8 @@ $(function(){
 	$("#header").css("bottom", 0)
 	$("#header").hide();
 	setTimeout(function(){$("#header").css("visibility","visible")},500)
-	if(!$.cookie("lat")||isNaN($.cookie("lat"))) $.cookie("lat", getcenterlat())
-	if(!$.cookie("lon")||isNaN($.cookie("lon"))) $.cookie("lon", getcenterlon())
+	if(!$.cookie("lat")||isNaN($.cookie("lat"))) $.cookie("lat",    getcenterlat())
+	if(!$.cookie("lon")||isNaN($.cookie("lon"))) $.cookie("lon",    getcenterlat())
 	if(!$.cookie("zoom")||isNaN($.cookie("zoom"))) $.cookie("zoom", getcenterzoom())
 	if(!$.cookie("visible")) $.cookie("visible", "all") 
 	if(!$.cookie("mapType")) $.cookie("mapType", "roadmap")

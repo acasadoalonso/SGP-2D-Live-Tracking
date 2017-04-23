@@ -1,8 +1,7 @@
-// 
-// SGP app configuration file 
-// App hostname: CASADOUBUNTU
-// Config generated: 2017-04-22 18:16:12 
 { 					    
+        "doc1"  :  "SGP app config file",   
+        "doc2"  :  "CASADOUBUNTU",	    
+        "doc3"  :  "2017-04-23 01:40:35", 
 	"center":{	 		    
 		"zoom":12, 
 		"lat": 42.5, 
@@ -14,9 +13,9 @@
 		"port":  81  
 	         },  		            
 	"bounds":{	 		    
-		"ne_lat":+43.5, 
-		"ne_lon":+4.0, 
-		"sw_lat":+40.0, 
+		"ne_lat":43.5, 
+		"ne_lon":4.0, 
+		"sw_lat":40.0, 
 		"sw_lon":-4.0  
 	         }  		            
 }  		         		    

@@ -5,7 +5,7 @@ var fs = require('fs'),
     ini = require('ini');
 var request = require("request");
 var config  = ini.parse(fs.readFileSync('/etc/local/APRSconfig.ini', 'utf-8'))
-var appurl  =  config.server.AppUrl;
+var appurl  =  "http://"+config.server.AppUrl;
 var areaogn =  config.server.AppArea;
 
 var io = require('socket.io')(81);

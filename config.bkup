@@ -1,16 +1,13 @@
-var json = (function () {
-    var json = null;
-    $.ajax({
-        'async': false,
-        'global': false,
-        'url': './config.json',
-        'dataType': "json",
-        'success': function (data) {
-            json = data;
-        }
-    });
-    return json;
-})(); 
+var json;
+
+var oReq = new XMLHttpRequest();
+oReq.onload = reqListener;
+oReq.open("get", "./config.json", true);
+oReq.send();
+
+function reqListener(e) {
+    json = JSON.parse(this.responseText);
+}
 console.log(json);
 function getbounds()
 {
