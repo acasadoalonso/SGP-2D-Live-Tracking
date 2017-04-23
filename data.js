@@ -5,8 +5,8 @@ var fs = require('fs'),
     ini = require('ini');
 var request = require("request");
 var config  = ini.parse(fs.readFileSync('/etc/local/APRSconfig.ini', 'utf-8'))
-var appurl  =  "http://"+config.server.AppUrl;
-var areaogn =  config.server.AppArea;
+var AppUrl  =  "http://"+config.server.AppUrl;
+var AppArea =  config.server.AppArea;
 
 var io = require('socket.io')(81);
 var sockets=0, desktop=0, mobile=0;
@@ -37,7 +37,7 @@ io.on('connection', function (socket) {
 });
 
 setInterval(function(){
-	var url=appurl + "/node/data.php?clients=" + sockets + areaogn;
+	var url=AppUrl + "/node/data.php?clients=" + sockets + AppArea;
 	request(url, function(err, resp, body){
 	  try{io.sockets.emit("data", JSON.parse(body));}catch(e){}
 	});
