@@ -661,8 +661,9 @@ var busy=false;
 
 var appurl = getappurl();
 var appport= getappport();
+socketurl=appurl+':'+appport;
 
-var socket = io.connect($appurl.":".$appport, { query: "platform=mobile"});
+var socket = io.connect(socketurl, { query: "platform=mobile"});
 $('.visible').off('click').on('click', function(){
 	busy=true
 	$.cookie("visible", $(this).val())
@@ -725,9 +726,10 @@ $(function(){
 	$("#header").hide();
 	setTimeout(function(){$("#header").css("visibility","visible")},500)
 
-	if(!$.cookie("lat")||isNaN($.cookie("lat"))) $.cookie("lat", -33.380167)
-	if(!$.cookie("lon")||isNaN($.cookie("lon"))) $.cookie("lon", -70.5825)
-	if(!$.cookie("zoom")||isNaN($.cookie("zoom"))) $.cookie("zoom", 12)
+        if(!$.cookie("lat")||isNaN($.cookie("lat"))) $.cookie("lat",    getcenterlat())
+        if(!$.cookie("lon")||isNaN($.cookie("lon"))) $.cookie("lon",    getcenterlat())
+        if(!$.cookie("zoom")||isNaN($.cookie("zoom"))) $.cookie("zoom", getcenterzoom())
+
 	if(!$.cookie("visible")) $.cookie("visible", "all") 
 	if(!$.cookie("mapType")) $.cookie("mapType", "roadmap")
 	
@@ -992,7 +994,7 @@ function setTurnPointTask(marker,data){
 var taskElements=[]
 function getTask(){
 	$.ajax({
-		url:"/node/data?FLAG=TASK",
+		url:"/node/data.php?FLAG=TASK",
 		type:"POST",
 		dataType:"json",
 		success: function(json){
@@ -1450,7 +1452,7 @@ $('#aprs').off('click').on('click', function(){
 var heatmap;
 function setHeatMap(station){
 	try{heatmap.setMap(null)}catch(e){};
-	var url="/node/data?FLAG=GETHEATMAP&station=" + station + "&offset=" + $.cookie("heatmapDate");
+	var url="/node/data.php?FLAG=GETHEATMAP&station=" + station + "&offset=" + $.cookie("heatmapDate");
 	$.ajax({
 		url:url,
 		dataType: "json",
@@ -1503,7 +1505,7 @@ $('#stationPhoto').off('click').on('click', function(){
 
 $(document).off('click', '.moraInfoStation').on('click', '.moraInfoStation', function(){
 	$.ajax({
-		url:"data?FLAG=MOREINFOSTATION&station=" + $(this).attr('station'),
+		url:"data.php?FLAG=MOREINFOSTATION&station=" + $(this).attr('station'),
 		type:"POST",
 		success: function(data){
 			console.log(data);
