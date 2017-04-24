@@ -48,8 +48,8 @@ if($FLAG=="DATA"&&$station!=""){
 	echo json_encode($rows);
 	die();
 }
-$lat=-33.380167;
-$lon=-70.5825;
+$lat=$AppLat;
+$lon=$AppLon;
 
 ?>
 <!DOCTYPE html>
@@ -86,7 +86,7 @@ body { height: 100%; margin: 0px; padding: 0px; font-family:Arial, Helvetica, sa
 <select id="station" style="width: 170px;" >
 <option value="">Station...</option>
 <?php
-	$sqlString="select idrec as station from RECEIVERS order by idrec";
+	$sqlString="select distinct idrec as station from RECEIVERS order by idrec";
 	$rows = array();
 	$result = $connAPRSLOG->query($sqlString);
 	

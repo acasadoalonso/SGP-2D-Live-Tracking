@@ -1,7 +1,7 @@
 { 					    
         "doc1"  :  "SGP app config file",   
         "doc2"  :  "CASADOUBUNTU",	    
-        "doc3"  :  "2017-04-23 01:40:35", 
+        "doc3"  :  "2017-04-25 00:21:20", 
 	"center":{	 		    
 		"zoom":12, 
 		"lat": 42.5, 
