@@ -731,7 +731,7 @@ $(function(){
 	$("#header").hide();
 	setTimeout(function(){$("#header").css("visibility","visible")},500)
 	if(!$.cookie("lat")||isNaN($.cookie("lat"))) $.cookie("lat",    getcenterlat())
-	if(!$.cookie("lon")||isNaN($.cookie("lon"))) $.cookie("lon",    getcenterlat())
+	if(!$.cookie("lon")||isNaN($.cookie("lon"))) $.cookie("lon",    getcenterlon())
 	if(!$.cookie("zoom")||isNaN($.cookie("zoom"))) $.cookie("zoom", getcenterzoom())
 	if(!$.cookie("visible")) $.cookie("visible", "all") 
 	if(!$.cookie("mapType")) $.cookie("mapType", "roadmap")
