@@ -7,8 +7,9 @@ var request = require("request");
 var config  = ini.parse(fs.readFileSync('/etc/local/APRSconfig.ini', 'utf-8'))
 var AppUrl  =  "http://"+config.server.AppUrl;
 var AppArea =  config.server.AppArea;
+var AppPort =  config.server.AppPort;
 
-var io = require('socket.io')(81);
+var io = require('socket.io')(AppPort);
 var sockets=0, desktop=0, mobile=0;
 io.on('connection', function (socket) {
 
