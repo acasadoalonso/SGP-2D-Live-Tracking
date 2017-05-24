@@ -91,7 +91,7 @@ if($FLAG=='HEATMAP'){
 }
 
 if($FLAG=='MOREINFOSTATION'){
-	$connOGNDB   = new mysqli($servername, $username, $password, "OGNDB");
+	$connOGNDB   = new mysqli($servername, $username, $password, $OGNDB);
 	$html='<div style="background-color:#008080; color:white; margin-bottom:3px; padding:3px; text-align:center">Station Records</div><div style="float:left"><strong>'.$station.'</strong>';
 	
 	$sqlString="select date, ROUND(mdist,0) as distance, ROUND(malt,0) as alt from STATIONS where idsta='".$station."' order by date desc LIMIT 0,7";
