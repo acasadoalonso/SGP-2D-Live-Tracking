@@ -6,3 +6,5 @@ nohup.out
 old/
 bkup/
 2D*
+config.php
+config.json

@@ -4,6 +4,12 @@ var util = require("util"),
 var fs = require('fs'),
     ini = require('ini');
 var request = require("request");
+var configdir = process.env.configdir;
+console.log(configdir);
+if (configdir == undefined){
+	configdir='/etc/local/';
+	}
+console.log(configdir);
 var config  = ini.parse(fs.readFileSync('/etc/local/APRSconfig.ini', 'utf-8'))
 var AppUrl  =  "http://"+config.server.AppUrl;
 var AppPort =  config.server.AppPort;
