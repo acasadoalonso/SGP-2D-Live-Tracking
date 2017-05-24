@@ -13,10 +13,13 @@ import os
 import datetime
 from configparser import ConfigParser
 datafile = open("config.php", "w")
-
+configdir=os.getenv('CONFIGDIR')
+if configdir == None:
+	configdir='/etc/local/'
+configfile=configdir+'APRSconfig.ini'
 hostname=socket.gethostname()
 cfg=ConfigParser()
-cfg.read('/etc/local/APRSconfig.ini')
+cfg.read(configfile)
 
 DBpath                  = cfg.get('server', 'DBpath').strip("'").strip('"')
 MySQLtext               = cfg.get('server', 'MySQL').strip("'").strip('"')

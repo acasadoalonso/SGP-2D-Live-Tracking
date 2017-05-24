@@ -1,7 +1,7 @@
 <?php 
 # SGP app configuration file 
 # App hostname: CASADOUBUNTU
-# Config generated: 2017-05-23 18:26:50 
+# Config generated: 2017-05-24 09:42:51 
 $DBpath='/nfs/OGN/SWdata/'; 
 $DBuser='ogn'; 
 $DBpasswd='ogn'; 
