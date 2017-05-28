@@ -5,7 +5,6 @@ var fs = require('fs'),
     ini = require('ini');
 var request = require("request");
 var configdir = process.env.configdir;
-console.log(configdir);
 if (configdir == undefined){
 	configdir='/etc/local/';
 	}
@@ -30,7 +29,8 @@ io.on('connection', function (socket) {
 		if(handshakeData._query['platform']=="mobile") mobile++;	
 	}
 	sockets++;
-	console.log("Active CNX : Total:" + sockets + "; Mobile:" + mobile + "; Desktop:" + desktop);
+	var d = new Date();
+	console.log("Active CNX : Total:" + sockets + "; Mobile:" + mobile + "; Desktop:" + desktop + " Date: " + d);
 	//io.emit('data', { hello: 'world' });
 	
 	//socket.on('echo', function (data, response) {
