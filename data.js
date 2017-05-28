@@ -42,7 +42,8 @@ io.on('connection', function (socket) {
 		if(handshakeData._query['platform']=="desktop") desktop--;
 		if(handshakeData._query['platform']=="mobile") mobile--;	
 		sockets--;
-		console.log("Active CNX : Total:" + sockets + "; Mobile:" + mobile + "; Desktop:" + desktop);
+		d = new Date();
+		console.log("Active CNX : Total:" + sockets + "; Mobile:" + mobile + "; Desktop:" + desktop + " Date: " + d);
 	
 	});
   
