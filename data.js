@@ -9,7 +9,7 @@ if (configdir == undefined){
 	configdir='/etc/local/';
 	}
 console.log(configdir);
-var config  = ini.parse(fs.readFileSync('/etc/local/APRSconfig.ini', 'utf-8'))
+var config  = ini.parse(fs.readFileSync(configdir+'APRSconfig.ini', 'utf-8'))
 var AppUrl  =  "http://"+config.server.AppUrl;
 var AppPort =  config.server.AppPort;
 //var AppArea =  config.server.AppArea;
