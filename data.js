@@ -4,9 +4,12 @@ var util = require("util"),
 var fs = require('fs'),
     ini = require('ini');
 var request = require("request");
-var configdir = process.env.configdir;
+var configdir = process.env.CONFIGDIR;
 if (configdir == undefined){
-	configdir='/etc/local/';
+	configdir = process.env.configdir;
+	if (configdir == undefined){
+		configdir='/etc/local/';
+		}
 	}
 console.log(configdir);
 var config  = ini.parse(fs.readFileSync(configdir+'APRSconfig.ini', 'utf-8'))

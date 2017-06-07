@@ -31,6 +31,10 @@ $connAPRSLOG = new mysqli($servername, $username, $password, $dbname);
 if(1==1){
 	$sqlString="select DISTINCT(idflarm) as idflarm, max(time) as time from OGNDATA where date='".$today."' GROUP BY idflarm";
 	$result = $connAPRSLOG->query($sqlString);
+        if (!$result) {
+                throw new Exception("Database Error [{$connAPRSLOG->errno}] {$connAPRSLOG->error}");
+        }
+
 	while($r2 = $result->fetch_assoc()) {
 		$time=$r2["time"];
 		$date=substr($today, 0,2)."/".substr($today, 2,2)."/".substr($today, 4,2)." ".substr($r2["time"], 0,2).":".substr($r2["time"], 2,2).":".substr($r2["time"], 4,2);
@@ -40,6 +44,10 @@ if(1==1){
 		$sqlString="SELECT ROUND(AVG(roclimb),1) as roclimb from OGNDATA where idflarm='".$r2["idflarm"]."' and date='".$today."' and time>=".$time;
 		//echo $sqlString;
 		$result3 = $connAPRSLOG->query($sqlString);
+        	if (!$result3) {
+                	throw new Exception("Database Error [{$connAPRSLOG->errno}] {$connAPRSLOG->error}");
+        	}
+
 		while($r3 = $result3->fetch_assoc()) {
 			
 			$sqlString="update GLIDERS_POSITIONS set roclimb='".$r3["roclimb"]."' where idflarm='".$r2["idflarm"]."'";
