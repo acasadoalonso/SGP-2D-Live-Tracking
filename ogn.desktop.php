@@ -593,7 +593,7 @@ for($i=0;$i<$top;$i++){
         	<div class="button buttonChart" type="VARIO">VARIO</div>
         	<div class="button" type="LOCK" lock="0" id="lock">LOCK</div>
         	<div class="button" type="RADAR">RADAR</div>
-        	<div class="button" type="TRACK">TRACK</div>
+        	<div class="button btnTRACK" type="TRACK">TRACK</div>
             
         	<!--<div style="height:48px; float:left; padding-left:10px"><img src="/node/img/unlock.png" width="48" height="48" style="float:left" id="lock" lock="0"/></div>
         	<div style="height:48px; float:left; padding-left:10px"><img id="radar" src="/node/img/radar.0.png" width="48" height="48"></div>
@@ -1759,7 +1759,7 @@ function createStations(){
 			if(item.flarmId==activeFlarm) color=getColor("colorGliderActive");
 			var marker = new google.maps.Marker({
 				position: myLatLng,
-				title: item.registration,
+				title: item.registration + ' @' + item.altitude + 'm',
 				icon: {
 					path: (item.aircraftType=="GLIDER") ? glider: tow,
 					fillColor: color,
@@ -1785,6 +1785,11 @@ function createStations(){
 				tx[item.flarmId].marker.setZIndex(google.maps.Marker.MAX_ZINDEX + zIndex);
 				zIndex++;
 				calcMapSize();				
+			});
+			marker.addListener('rightclick',  function(mouseEvent) {
+				activeFlarm=tx[item.flarmId].flarmId	
+				displayData(tx[item.flarmId]);	
+				$('.btnTRACK').click();
 			});				
 		}else{
 			var marker=item.marker;
@@ -1821,6 +1826,7 @@ function createStations(){
 			}
 			var color=(item.age>60||item.speed<10) ? getColor("colorGliderOffline") : getColor("colorGliderOnline");
 			if(item.flarmId==activeFlarm) color=getColor("colorGliderActive");
+			item.marker.setTitle(item.registration + ' @' + item.altitude + 'm');		
 			item.marker.setIcon({
 				path: (item.aircraftType=="GLIDER") ? glider: tow,//path:google.maps.SymbolPath.CIRCLE,
 				fillColor: color,
@@ -1864,9 +1870,10 @@ function clearAircrafts(){
 	$("#track").attr("src", "/node/img/track.0.png")
 		
 	$.each(tx, function(i, item) {
-		
+		//title: item.registration + ' ' + item.altitude
 		var color=(item.age>300||item.speed<10) ? getColor("colorGliderOffline") : getColor("colorGliderOnline");	
-		var rtMaster=(item.aircraftType=="TOW") ? -45 : 45;								
+		var rtMaster=(item.aircraftType=="TOW") ? -45 : 45;
+		item.marker.setTitle(item.registration + ' @' + item.altitude + 'm');								
 		item.marker.setIcon({
 			path:(item.aircraftType=="GLIDER") ? glider: tow,
 			fillColor: color,

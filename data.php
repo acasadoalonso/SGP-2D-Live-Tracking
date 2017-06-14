@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 require_once 'config.php';
 $today=date("ymd");
-$now=gmdate("His");
+$now=gmdate("His"); 
 
 require_once 'SRTMGeoTIFFReader.php';
 $lat=0; $lon=0; $clients=0; $activeFlarm=""; $offset=0;
@@ -22,6 +22,40 @@ $date=$today;
 $station="";
 if (isset($_GET['date'])) $date = $_GET['date'];
 if (isset($_GET['station'])) $station = $_GET['station'];
+
+$files = array();
+$cucFile=''; 
+foreach (glob($cucFileLocation."/*.json") as $file) {
+                $files[] = $file;
+        }
+if(count($files)>0){
+	$cucFile=$cucFileLocation.$files[0];
+	}
+$canConvertRegistrationToCID=false;
+if(file_exists($cucFile)){
+	$canConvertRegistrationToCID=true;
+	$json = file_get_contents($cucFile);
+	$obj = json_decode($json, true);
+	$tracksJSONObject=$obj['tracks'];
+}
+
+
+function getCID($registration){
+	global $canConvertRegistrationToCID;
+	global $tracksJSONObject;
+	if($canConvertRegistrationToCID==false){
+		return $registration;
+	}else{
+		$returnValue=$registration;
+		foreach($tracksJSONObject as $key => $value){
+			if($value['registration']==$registration){
+				$returnValue=$value['competitionId'];
+			}
+		}
+		return $returnValue;
+	}
+}
+
 
 $dataReader = new SRTMGeoTIFFReader("hgt"); // directory containing SRTM data files
 
@@ -158,7 +192,7 @@ if($FLAG=='LOGS'){
 
 if($FLAG=='TASK'){
 	$files = array();
-	foreach (glob("/var/www/html/cuc/*.json") as $file) {
+	foreach (glob($cucFileLocation."/*.json") as $file) {
   		$files[] = $file;
 	}
 	if(count($files)>0){
@@ -254,6 +288,7 @@ if($FLAG==''){
 			$r2["climb"]=round($r2["climb"]*0.00508,1);
 			$r2["agl"]=$r2["altitude"] - ($dataReader->getElevation($r2["lat"], $r2["lon"], $interpolate=false));
 			$r2["ground"]=($dataReader->getElevation($r2["lat"], $r2["lon"], $interpolate=false));
+			$r2["registration"]=getCID($r2["registration"]);
 			$rows['aircrafts'][] = $r2;
 		}
 	} else {

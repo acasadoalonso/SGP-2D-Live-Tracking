@@ -20,14 +20,23 @@ configfile=configdir+'APRSconfig.ini'
 hostname=socket.gethostname()
 cfg=ConfigParser()
 cfg.read(configfile)
-
+try:
+	cucFileLocation	= cfg.get('server', 'CucFileLocation').strip("'").strip('"')
+except:
+	cucFileLocation = "/var/www/html/cuc" 
 DBpath                  = cfg.get('server', 'DBpath').strip("'").strip('"')
 MySQLtext               = cfg.get('server', 'MySQL').strip("'").strip('"')
 DBhost                  = cfg.get('server', 'DBhost').strip("'").strip('"')
 DBuser                  = cfg.get('server', 'DBuser').strip("'").strip('"')
 DBpasswd                = cfg.get('server', 'DBpasswd').strip("'").strip('"')
-DBuserread              = cfg.get('server', 'DBuserread').strip("'").strip('"')
-DBpasswdread            = cfg.get('server', 'DBpasswdread').strip("'").strip('"')
+try:
+	DBuserread      = cfg.get('server', 'DBuserread').strip("'").strip('"')
+except:
+	DBuserread      = DBuser
+try:
+	DBpasswdread    = cfg.get('server', 'DBpasswdread').strip("'").strip('"')
+except:
+	DBpasswdread    = DBpasswd
 APPuser                 = cfg.get('server', 'APPuser').strip("'").strip('"')
 APPpasswd               = cfg.get('server', 'APPpasswd').strip("'").strip('"')
 DBname                  = cfg.get('server', 'DBname').strip("'").strip('"')
@@ -50,6 +59,7 @@ datafile.write("# SGP app configuration file \n")
 datafile.write("# App hostname: "+hostname+"\n")
 datafile.write("# App configdir: "+configdir+"\n")
 datafile.write("# Config generated: "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+" \n")
+datafile.write("$cucFileLocation='"+cucFileLocation+"'; \n")
 datafile.write("$DBpath='"+DBpath+"'; \n")
 datafile.write("$DBuser='"+DBuser+"'; \n")
 datafile.write("$DBpasswd='"+DBpasswd+"'; \n")
