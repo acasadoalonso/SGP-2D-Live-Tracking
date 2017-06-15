@@ -14,7 +14,7 @@ if (configdir == undefined){
 console.log(configdir);
 var config  = ini.parse(fs.readFileSync(configdir+'APRSconfig.ini', 'utf-8'))
 var AppUrl  =  "http://"+config.server.AppUrl;
-var AppUrl  =  "http://localhost";
+//var AppUrl  =  "http://localhost";
 var AppPort =  config.server.AppPort;
 //var AppArea =  config.server.AppArea;
 var AppArea =  	"&ne_lat=" + config.server.AppNeLat + 
