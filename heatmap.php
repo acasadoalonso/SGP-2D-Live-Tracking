@@ -39,22 +39,16 @@ if ($result2->num_rows > 0) {
 	while($r2 = $result2->fetch_assoc()) {
 		$fileG="/var/www/html/node/heatmaps/GLOBAL-".$r2["date"].".json";
 		$file="/var/www/html/node/heatmaps/".$r2["station"]."-".$r2["date"].".json";
-		//if(!file_exists($file)){
-<<<<<<< HEAD
-			$url=$AppUrl."/node/heatmap.php?FLAG=DATA&station=".$r2["station"]."&date=".$r2["date"];
-=======
->>>>>>> 384f06e9b3b48ba12e81b412ace7d8a6bc80da74
-			$url="http://localhost/node/heatmap.php?FLAG=DATA&station=".$r2["station"]."&date=".$r2["date"];
-			$json=file_get_contents($url);
-			$ggg = json_decode($json, True);
-			//var_dump($ggg);
-			$hhh = $ggg['heatmap'];
-			//var_dump($hhh);
-			$kkk = $glob['heatmap'];
-			$glob['heatmap'] = array_merge($kkk,$hhh);
-			file_put_contents($file, $json);
+		$url="http://localhost/node/heatmap.php?FLAG=DATA&station=".$r2["station"]."&date=".$r2["date"];
+		$json=file_get_contents($url);
+		$ggg = json_decode($json, True);
+		//var_dump($ggg);
+		$hhh = $ggg['heatmap'];
+		//var_dump($hhh);
+		$kkk = $glob['heatmap'];
+		$glob['heatmap'] = array_merge($kkk,$hhh);
+		file_put_contents($file, $json);
 		
-		//}
 	}
 	file_put_contents($fileG, json_encode($glob));
 }
