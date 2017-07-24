@@ -11,10 +11,16 @@ if (configdir == undefined){
 		configdir='/etc/local/';
 		}
 	}
-console.log(configdir);
+var os = require("os");
+var hostname = os.hostname();
+console.log(configdir + ' at '+ hostname);
 var config  = ini.parse(fs.readFileSync(configdir+'APRSconfig.ini', 'utf-8'))
 var AppUrl  =  "http://"+config.server.AppUrl;
+if (hostname == "UBUVM"){
+	AppUrl  =  "http://localhost";
+	}
 var AppPort =  config.server.AppPort;
+console.log(AppUrl + ':'+ AppPort);
 //var AppArea =  config.server.AppArea;
 var AppArea =  	"&ne_lat=" + config.server.AppNeLat + 
 		"&ne_lon=" + config.server.AppNeLon + 

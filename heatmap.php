@@ -40,7 +40,10 @@ if ($result2->num_rows > 0) {
 		$fileG="/var/www/html/node/heatmaps/GLOBAL-".$r2["date"].".json";
 		$file="/var/www/html/node/heatmaps/".$r2["station"]."-".$r2["date"].".json";
 		//if(!file_exists($file)){
+<<<<<<< HEAD
 			$url=$AppUrl."/node/heatmap.php?FLAG=DATA&station=".$r2["station"]."&date=".$r2["date"];
+=======
+>>>>>>> 384f06e9b3b48ba12e81b412ace7d8a6bc80da74
 			$url="http://localhost/node/heatmap.php?FLAG=DATA&station=".$r2["station"]."&date=".$r2["date"];
 			$json=file_get_contents($url);
 			$ggg = json_decode($json, True);

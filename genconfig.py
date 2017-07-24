@@ -21,7 +21,7 @@ hostname=socket.gethostname()
 cfg=ConfigParser()
 cfg.read(configfile)
 try:
-	cucFileLocation	= cfg.get('server', 'CucFileLocation').strip("'").strip('"')
+	cucFileLocation	= cfg.get('server', 'cucFileLocation').strip("'").strip('"')
 except:
 	cucFileLocation = "/var/www/html/cuc" 
 DBpath                  = cfg.get('server', 'DBpath').strip("'").strip('"')
