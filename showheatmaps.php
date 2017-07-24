@@ -16,7 +16,12 @@ if (isset($_GET['date'])) $date = $_GET['date'];
 if (isset($_GET['FLAG'])) $FLAG = $_GET['FLAG'];
 if (isset($_GET['station'])) $station = $_GET['station'];
 if($FLAG=="STATION"&&$station!=""){
-	$sqlString="SELECT latitude as lat, longitude as lon FROM `RECEIVERS` WHERE idrec='".$station."' LIMIT 0,1"; // order by weight desc;
+	$sqlString="SELECT latitude as lat, longitude as lon FROM `RECEIVERS` WHERE idrec='".$station."' LIMIT 0,1"; // order by weight desc;a
+	if($station=="GLOBAL"){
+
+	//	$sqlString="SELECT latitude as lat, longitude as lon FROM `RECEIVERS`  LIMIT 0,1"; // order by weight desc;a
+        }
+
 	$result2 = $connAPRSLOG->query($sqlString);
 	if ($result2->num_rows > 0) {
 		while($r2 = $result2->fetch_assoc()) {
@@ -32,7 +37,7 @@ if($FLAG=="STATION"&&$station!=""){
 if($FLAG=="DATA"&&$station!=""){
 	$sqlString="SELECT latitude as lat, longitude as lon FROM `OGNDATA` WHERE station='".$station."' and date='".$date."'" ; // order by weight desc;
 	if($station=="GLOBAL"){
-	//$sqlString="SELECT ROUND(latitude,2) as lat, ROUND(longitude,2) as lon FROM `OGNDATA`" ; // order by weight desc;
+		//$sqlString="SELECT ROUND(latitude,2) as lat, ROUND(longitude,2) as lon FROM `OGNDATA` WHERE date='".$date."' ;" ; // order by weight desc;
 		
 	}
 	$result2 = $connAPRSLOG->query($sqlString);
@@ -40,11 +45,11 @@ if($FLAG=="DATA"&&$station!=""){
 		//echo $sqlString;
 		while($r2 = $result2->fetch_assoc()) {
 			$rows['heatmap'][] = $r2;
-			//echo $r2["waypoint"];
 		}
 	}else{
 		$rows['heatmap']=[];
 	}
+	echo $rows;
 	echo json_encode($rows);
 	die();
 }
@@ -85,11 +90,11 @@ body { height: 100%; margin: 0px; padding: 0px; font-family:Arial, Helvetica, sa
 <input type="text" id="datepicker" width="100px"  value="" /><br>
 <select id="station" style="width: 170px;" >
 <option value="">Station...</option>
+<option value="GLOBAL">GLOBAL</option>
 <?php
 	$sqlString="select distinct idrec as station from RECEIVERS order by idrec";
 	$rows = array();
 	$result = $connAPRSLOG->query($sqlString);
-	
 	if ($result->num_rows > 0) {
 		while($r = $result->fetch_assoc()) {
 ?>
@@ -178,7 +183,7 @@ var marker, heatmap;
 function loadStation(json2){
 	
 	$.ajax({
-		url:"/node/test.php",
+		url:"/node/showheatmaps.php",
 		data: "FLAG=STATION&station=" + station,
 		type:"POST",
 		contentType:"application/json",
@@ -208,6 +213,7 @@ function loadStation(json2){
 	heatmap = new google.maps.visualization.HeatmapLayer({
 		data: heatmapData
 	});
+
 	heatmap.setMap(map);
 	map.fitBounds(bounds);
 	heatmap.set('opacity',0.8)
