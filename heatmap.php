@@ -16,13 +16,13 @@ if (isset($_GET['FLAG'])) $FLAG = $_GET['FLAG'];
 if (isset($_GET['station'])) $station = $_GET['station'];
 
 if($FLAG=="DATA"&&$station!=""){
-	$sqlString="SELECT latitude as lat, longitude as lon , station as sta FROM `OGNDATA` WHERE station='".$station."'" ; // order by weight desc;
+	$sqlString="SELECT latitude as lat, longitude as lon FROM `OGNDATA` WHERE station='".$station."'" ; // order by weight desc;
 	$result2 = $connAPRSLOG->query($sqlString);
 	if ($result2->num_rows > 0) {
 		//echo $sqlString;
 		while($r2 = $result2->fetch_assoc()) {
 			$rows['heatmap'][] = $r2;
-			echo $r2["heatmap"];
+			//echo $r2["heatmap"];
 		}
 	}else{
 		$rows['heatmap']=[];
