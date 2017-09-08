@@ -228,12 +228,29 @@ if($FLAG=='NEARBY'){
 if($FLAG==''){
 	//;
 	
-	$sqlString="select idrec as station, lati as lat, longi as lon, ROUND(alti) as alt, cpu, temp, rf, status, version, ROUND(time_to_sec((TIMEDIFF(NOW(), lastFixRx)))) as age, (select count(*) from GLIDERS_POSITIONS where TIME_TO_SEC(TIMEDIFF(NOW(),lastFixTx))<25 and station=idrec) as trackingAircrafts, (select count(*) from OGNDATA where station=RECEIVERS_STATUS.idrec) as pkgs, ROUND(maxDistance,2) as maxDistance  from RECEIVERS_STATUS where lati<=".$_GET['ne_lat']." and lati>=".$_GET['sw_lat']." and  longi<=".$_GET['ne_lon']." and longi>=".$_GET['sw_lon']." order by idrec";
+	$sqlString="select null as nearby, idrec as station, lati as lat, longi as lon, ROUND(alti) as alt, cpu, temp, rf, status, version, ROUND(time_to_sec((TIMEDIFF(NOW(), lastFixRx)))) as age, (select count(*) from GLIDERS_POSITIONS where TIME_TO_SEC(TIMEDIFF(NOW(),lastFixTx))<25 and station=idrec) as trackingAircrafts, (select count(*) from OGNDATA where station=RECEIVERS_STATUS.idrec) as pkgs, ROUND(maxDistance,2) as maxDistance  from RECEIVERS_STATUS where lati<=".$_GET['ne_lat']." and lati>=".$_GET['sw_lat']." and  longi<=".$_GET['ne_lon']." and longi>=".$_GET['sw_lon']." order by idrec";
 	$rows = array();
-	$result = $connAPRSLOG->query($sqlString);
+	$result = $connAPRSLOG->query($sqlString); 
 	
 	if ($result->num_rows > 0) {
 		while($r = $result->fetch_assoc()) {
+			
+
+
+		$rows2 = array();
+		$sqlString="select idrec as station, ROUND(time_to_sec((TIMEDIFF(NOW(), lastFixRx)))) as age from RECEIVERS_STATUS where idrec<>'".$r["station"]."' and GETDISTANCE(".$r["lat"].",".$r["lon"].", lati, longi)<0.6";
+		$resultBaseNearBy = $connAPRSLOG->query($sqlString);
+		if ($resultBaseNearBy->num_rows > 0) {
+			//echo $sqlString;
+			while($rBaseNearBy = $resultBaseNearBy->fetch_assoc()) {
+				$rows2['nearbyStations'][] = $rBaseNearBy;
+				//echo $r2["waypoint"];
+			}
+		} else {
+			$rows2['nearbyStations']=[];
+		}
+
+			$r['nearby']=$rows2['nearbyStations'];
 			$rows['stations'][] = $r;
 		}
 	}else{
@@ -370,7 +387,7 @@ if($FLAG==''){
 	$rows['max']=$max;
 	print json_encode($rows);	
 	
-}elseif($FLAG=="ALT"){
+}elseif($FLAG=="ALTITUDE"){
 	$minTime="000000";
 	$sqlString="SELECT time, speed FROM `OGNDATA` WHERE idflarm='".$_GET['FLARM']."' and speed>25 and  speed<55 and date=DATE_FORMAT(NOW(), '%y%m%d') order by time desc LIMIT 0, 1";
 	$result2 = $connAPRSLOG->query($sqlString);
@@ -384,10 +401,10 @@ if($FLAG==''){
 	
 		while($r2 = $result2->fetch_assoc()) {
 			$r2["ground"] = ($dataReader->getElevation($r2["lat"], $r2["lon"], $interpolate=false));
-			$rows['track'][] = $r2;
+			$rows['altitude'][] = $r2;
 		}
 	} else {
-		$rows['track']=[];
+		$rows['altitude']=[];
 	}
 	print json_encode($rows);	
 }elseif($FLAG=="VARIO"){

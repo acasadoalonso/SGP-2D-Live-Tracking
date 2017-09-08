@@ -36,8 +36,8 @@ $result2 = $connAPRSLOG->query($sqlString);
 if ($result2->num_rows > 0) {
 	//echo $sqlString;
 	$glob['heatmap']=[];
+	$fileG="/var/www/html/node/heatmaps/GLOBAL-".$today.".json";
 	while($r2 = $result2->fetch_assoc()) {
-		$fileG="/var/www/html/node/heatmaps/GLOBAL-".$r2["date"].".json";
 		$file="/var/www/html/node/heatmaps/".$r2["station"]."-".$r2["date"].".json";
 		$url="http://localhost/node/heatmap.php?FLAG=DATA&station=".$r2["station"]."&date=".$r2["date"];
 		$json=file_get_contents($url);
