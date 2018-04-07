@@ -1,16 +1,5 @@
-var json = (function () {
-    var json = null;
-    $.ajax({
-        'async': false,
-        'global': false,
-        'url': './config.json',
-        'dataType': "json",
-        'success': function (data) {
-            json = data;
-        }
-    });
-    return json;
-})(); 
+var json = configjson;
+
 console.log(json);
 function getbounds()
 {
@@ -19,6 +8,7 @@ function getbounds()
 }
 function getappurl()
 {
+	console.log(json);
 	var appurl   =  'http://'+json.socket.server;
 	return(appurl);
 }

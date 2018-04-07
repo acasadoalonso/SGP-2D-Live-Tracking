@@ -16,7 +16,9 @@
     <script src="/node/js/socket.io.js"></script>
     <script src='/node/js/kendo/js/kendo.all.min.js'></script>
     <script src='/node/js/kendo/js/cultures/kendo.culture.es-CL.min.js'></script>
-    <script src='/node/config.js'></script>
+   <script src='/node/configjson.js'></script>
+
+   <script src='/node/config.js'></script>
 
 
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
