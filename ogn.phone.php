@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Glider Tracking spain</title>
+    <title>Glider Tracking SGP 2D</title>
     <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
   <script src="jquery.2.2.4.min.js"></script>
@@ -18,6 +18,7 @@
     <script src='/node/js/kendo/js/kendo.all.min.js'></script>
     <script src='/node/js/kendo/js/cultures/kendo.culture.es-CL.min.js'></script>
     <script src='/node/config.js'></script>
+    <script src='/node/configjson.js'></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />

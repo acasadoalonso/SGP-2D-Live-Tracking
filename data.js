@@ -20,7 +20,7 @@ if (hostname == "UBUVM"){
 	AppUrl  =  "http://localhost";
 	}
 var AppPort =  config.server.AppPort;
-console.log(AppUrl + ':'+ AppPort);
+console.log(AppUrl + 'and port:'+ AppPort);
 //var AppArea =  config.server.AppArea;
 var AppArea =  	"&ne_lat=" + config.server.AppNeLat + 
 		"&ne_lon=" + config.server.AppNeLon + 
@@ -60,6 +60,7 @@ io.on('connection', function (socket) {
 
 setInterval(function(){
 	var url=AppUrl + "/node/data.php?clients=" + sockets + AppArea;
+	//console.log(url);
 	request(url, function(err, resp, body){
 	  try{io.sockets.emit("data", JSON.parse(body));}catch(e){}
 	});
