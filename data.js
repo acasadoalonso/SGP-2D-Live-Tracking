@@ -13,14 +13,12 @@ if (configdir == undefined){
 	}
 var os = require("os");
 var hostname = os.hostname();
-console.log(configdir + ' at '+ hostname);
 var config  = ini.parse(fs.readFileSync(configdir+'APRSconfig.ini', 'utf-8'))
 var AppUrl  =  "http://"+config.server.AppUrl;
 if (hostname == "UBUVM"){
 	AppUrl  =  "http://localhost";
 	}
 var AppPort =  config.server.AppPort;
-console.log(AppUrl + 'and use port:'+ AppPort);
 //var AppArea =  config.server.AppArea;
 var AppArea =  	"&ne_lat=" + config.server.AppNeLat + 
 		"&ne_lon=" + config.server.AppNeLon + 
@@ -28,6 +26,9 @@ var AppArea =  	"&ne_lat=" + config.server.AppNeLat +
 		"&sw_lon=" + config.server.AppSwLon + 
 		"&activeFlarm="
 
+console.log('Config: '+configdir + 'APRSconfig.ini at '+ hostname);
+console.log(AppUrl + ' and use port:'+ AppPort);
+console.log('AppArea: '+AppArea);
 var io = require('socket.io')(AppPort);
 var sockets=0, desktop=0, mobile=0;
 io.on('connection', function (socket) {
