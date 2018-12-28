@@ -20,7 +20,7 @@ if (hostname == "UBUVM"){
 	AppUrl  =  "http://localhost";
 	}
 var AppPort =  config.server.AppPort;
-console.log(AppUrl + 'and port:'+ AppPort);
+console.log(AppUrl + 'and use port:'+ AppPort);
 //var AppArea =  config.server.AppArea;
 var AppArea =  	"&ne_lat=" + config.server.AppNeLat + 
 		"&ne_lon=" + config.server.AppNeLon + 
