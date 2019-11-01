@@ -12,6 +12,7 @@ import socket
 import os
 import datetime
 from configparser import ConfigParser
+
 datafile = open("config.php", "w")
 configdir=os.getenv('CONFIGDIR')
 if configdir == None:
@@ -100,7 +101,7 @@ datafile.write('	         },  		            \n')
 datafile.write('	"socket":{	 		    \n')
 datafile.write('		"server":"'+AppUrl	+'",\n')
 datafile.write('		"port":  '+AppPort 	+' ,\n')
-datafile.write('		"RefreshInt":'+RefreshInt+'  \n')
+datafile.write('		"RefreshInt":'+RefreshInt+' \n')
 datafile.write('	         },  		            \n')
 datafile.write('	"bounds":{	 		    \n')
 datafile.write('		"ne_lat":'+AppNeLat	+', \n')
@@ -111,3 +112,4 @@ datafile.write('	         }  		            \n')
 datafile.write('}  		         		    \n')
 datafile.close()
 # --------------------------------------#
+os.system("cp configjson.js config.json")
