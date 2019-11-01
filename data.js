@@ -33,7 +33,7 @@ console.log('AppArea: '+AppArea);
 var io = require('socket.io')(AppPort);
 var sockets=0, desktop=0, mobile=0;
 io.on('connection', function (socket) {
-        console.log("TRY")
+        // console.log("TRY")
   	var handshakeData = socket.request;
   	if(handshakeData._query['platform']){
 		if(handshakeData._query['platform']=="desktop") desktop++;
