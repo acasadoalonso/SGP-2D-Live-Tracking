@@ -19,7 +19,7 @@ if (hostname == "UBUVM"){
 	AppUrl  =  "http://localhost";
 	}
 var AppPort =  config.server.AppPort;
-//var AppArea =  config.server.AppArea;
+var RefreshInt =  config.server.RefreshInt;
 var AppArea =  	"&ne_lat=" + config.server.AppNeLat + 
 		"&ne_lon=" + config.server.AppNeLon + 
 		"&sw_lat=" + config.server.AppSwLat + 
@@ -27,12 +27,12 @@ var AppArea =  	"&ne_lat=" + config.server.AppNeLat +
 		"&activeFlarm="
 
 console.log('Config: '+configdir + 'APRSconfig.ini at '+ hostname);
-console.log(AppUrl + ' and use port:'+ AppPort);
+console.log(AppUrl + ' and use port:'+ AppPort+ ' Int:'+RefreshInt);
 console.log('AppArea: '+AppArea);
 var io = require('socket.io')(AppPort);
 var sockets=0, desktop=0, mobile=0;
 io.on('connection', function (socket) {
-
+        console.log("TRY")
   	var handshakeData = socket.request;
   	if(handshakeData._query['platform']){
 		if(handshakeData._query['platform']=="desktop") desktop++;
@@ -66,7 +66,7 @@ setInterval(function(){
 	  try{io.sockets.emit("data", JSON.parse(body));}catch(e){}
 	});
 	
-},2000)
+},RefreshInt)
 
 net = require('net');
 
