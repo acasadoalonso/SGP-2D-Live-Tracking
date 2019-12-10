@@ -31,6 +31,7 @@ console.log('Config: '+configdir + 'APRSconfig.ini at '+ hostname);
 console.log(AppUrl + ' and use port:'+ AppPort+ ' Int:'+RefreshInt);
 console.log('AppArea: '+AppArea);
 var io = require('socket.io')(AppPort);
+var socketn = io(AppUrl, {transports: ['websocket', 'polling', 'flashsocket']});
 var sockets=0, desktop=0, mobile=0;
 io.on('connection', function (socket) {
         // console.log("TRY")
