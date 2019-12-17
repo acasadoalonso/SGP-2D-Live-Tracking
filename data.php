@@ -157,7 +157,7 @@ if($FLAG=='MOREINFOSTATION'){
 }
 if($FLAG=='GETHEATMAP'){
 	$today=date("ymd", time() - ((60 * 60 * 24 * -1)*$offset));
-	$file="/var/www/html/node/heatmaps/".$station."-".$today.".json";
+	$file="/var/www/html/node/heatmaps/".strtoupper($station)."-".$today.".json";
 	if(file_exists($file)){
 		echo file_get_contents($file);
 	}else{

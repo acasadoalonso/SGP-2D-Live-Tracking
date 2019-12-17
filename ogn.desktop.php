@@ -16,7 +16,9 @@
     <script src="/node/js/socket.io.js"></script>
     <script src='/node/js/kendo/js/kendo.all.min.js'></script>
     <script src='/node/js/kendo/js/cultures/kendo.culture.es-CL.min.js'></script>
-    <script src='/node/config.js'></script>
+   <script src='/node/configjson.js'></script>
+
+   <script src='/node/config.js'></script>
 
 
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -1905,6 +1907,10 @@ function displayData(dataPoint){
 	if(registration==null) registration="N/A";
 	var distanceToStation=""
 	distanceToStation=" " + Math.round(distance(dataPoint.lat, dataPoint.lon, dataPoint.stationLat, dataPoint.stationLon)*10)/10
+	if (distanceToStation == " NaN")
+		{
+		distanceToStation=" " + Math.round(distance(dataPoint.lat, dataPoint.lon, getcenterlat(), getcenterlon())*10)/10
+		}
 	
 	if(activeWaypoints.length>0){
 		var html=""

@@ -1,16 +1,10 @@
 var util = require("util"),
     http = require("http");
-    https = require("https");
+//    express = require('express'), app = express(), server = http.createServer(app), io = require('socket.io').listen(server), exec = require('child_process').exec ;
 
 var fs = require('fs'),
     ini = require('ini');
 var request = require("request");
-
-var options = {
-  key: fs.readFileSync('/var/www/html/node/file.pem'),
-  cert: fs.readFileSync('/var/www/html/node/file.crt')
-};
-
 var configdir = process.env.CONFIGDIR;
 if (configdir == undefined){
 	configdir = process.env.configdir;
@@ -20,55 +14,26 @@ if (configdir == undefined){
 	}
 var os = require("os");
 var hostname = os.hostname();
-console.log(configdir + ' at '+ hostname);
 var config  = ini.parse(fs.readFileSync(configdir+'APRSconfig.ini', 'utf-8'))
-var AppUrl  =  "https://"+config.server.AppUrl;
+var AppUrl  =  "http://"+config.server.AppUrl;
 if (hostname == "UBUVM"){
-	AppUrl  =  "https://localhost";
-}
+	AppUrl  =  "http://localhost";
+	}
 var AppPort =  config.server.AppPort;
-console.log(AppUrl + ':'+ AppPort);
-//var AppArea =  config.server.AppArea;
+var RefreshInt =  config.server.RefreshInt;
 var AppArea =  	"&ne_lat=" + config.server.AppNeLat + 
 		"&ne_lon=" + config.server.AppNeLon + 
 		"&sw_lat=" + config.server.AppSwLat + 
 		"&sw_lon=" + config.server.AppSwLon + 
 		"&activeFlarm="
-console.log(AppUrl)
 
-/*var app = require('https').createServer({
-    key: fs.readFileSync('/var/www/html/node/file.pem'),
-    cert: fs.readFileSync('/var/www/html/node/file.crt'),
-  	passphrase: ''
-},handler);
-
-var io = require('socket.io').listen(app,{
-	"log level": 3
-	, log: true
-    , "pingTimeout": 15000
-    , "pingInterval": 20000
-});
-app.listen(AppPort);
-*/
-var options = {
-    key: fs.readFileSync('/var/www/html/node/certs/privkey.pem'),
-    cert: fs.readFileSync('/var/www/html/node/certs/cert.pem')
-};
-var https = require('https').createServer(options);
-var io = require('socket.io').listen(https);
-https.listen(AppPort, function(){
-	console.log('Server started at port: ' + AppPort);	
-});
-
-
-
-//var io = require('socket.io')(AppPort);
-
-
-
+console.log('Config: '+configdir + 'APRSconfig.ini at '+ hostname);
+console.log(AppUrl + ' and use port:'+ AppPort+ ' Int:'+RefreshInt);
+console.log('AppArea: '+AppArea);
+var io = require('socket.io')(AppPort);
 var sockets=0, desktop=0, mobile=0;
 io.on('connection', function (socket) {
-	console.log("TRY")
+        // console.log("TRY")
   	var handshakeData = socket.request;
   	if(handshakeData._query['platform']){
 		if(handshakeData._query['platform']=="desktop") desktop++;
@@ -94,16 +59,15 @@ io.on('connection', function (socket) {
 	});
   
 });
-io.on('disconnect', function (socket) {
-	console.log("DCNX:" + socket.id);
-});
+
 setInterval(function(){
 	var url=AppUrl + "/node/data.php?clients=" + sockets + AppArea;
+	//console.log(url);
 	request(url, function(err, resp, body){
 	  try{io.sockets.emit("data", JSON.parse(body));}catch(e){}
 	});
 	
-},2000)
+},RefreshInt)
 
 net = require('net');
 
@@ -157,23 +121,3 @@ net.createServer(function (socket) {
 
 }).listen(5000);
 
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-		try{
-			res.writeHead(500);
-		}catch(e){
-		
-		}
-		return res.end('Error loading index.html');
-    }
-
-    try{
-		res.writeHead(200);
-    }catch(e){
-	
-	}
-	res.end(data);
-  });
-}

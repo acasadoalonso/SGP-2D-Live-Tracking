@@ -12,6 +12,7 @@ import socket
 import os
 import datetime
 from configparser import ConfigParser
+
 datafile = open("config.php", "w")
 configdir=os.getenv('CONFIGDIR')
 if configdir == None:
@@ -43,6 +44,10 @@ DBname                  = cfg.get('server', 'DBname').strip("'").strip('"')
 OGNDB                   = cfg.get('server', 'OGNDB').strip("'").strip('"')
 AppUrl                  = cfg.get('server', 'AppUrl').strip("'").strip('"')
 AppPort                 = cfg.get('server', 'AppPort').strip("'").strip('"')
+try:
+	RefreshInt      = cfg.get('server', 'RefreshInt').strip("'").strip('"')
+except:
+	RefreshInt      = 10000
 #AppArea                 = cfg.get('server', 'AppArea').strip("'").strip('"')
 AppNeLat                = cfg.get('server', 'AppNeLat')
 AppNeLon                = cfg.get('server', 'AppNeLon')
@@ -74,13 +79,14 @@ datafile.write("$MySQL="+MySQLtext+"; \n")
 datafile.write("$appurl='"+AppUrl+"'; \n")
 datafile.write("$AppUrl='http://"+AppUrl+"'; \n")
 datafile.write("$AppPort='"+AppPort+"'; \n")
-#datafile.write("$AppArea='"+AppArea+"'; \n")
+datafile.write("$RefreshInt='"+RefreshInt+"'; \n")
 datafile.write("$AppLat="+AppLat+"; \n")
 datafile.write("$AppLon="+AppLon+"; \n")
 datafile.write("?> \n")
 datafile.close()
 # --------------------------------------#
-datafile = open("config.json", "w")
+datafile = open("configjson.js", "w")
+datafile.write("var configjson =			    \n")
 datafile.write("{ 					    \n")
 datafile.write('        "doc1"  :  "SGP app config file",   \n')
 datafile.write('        "doc2"  :  "'+hostname+'",	    \n')
@@ -94,7 +100,8 @@ datafile.write('		"base":"'+AppBase	+'" \n')
 datafile.write('	         },  		            \n')
 datafile.write('	"socket":{	 		    \n')
 datafile.write('		"server":"'+AppUrl	+'",\n')
-datafile.write('		"port":  '+AppPort 	+'  \n')
+datafile.write('		"port":  '+AppPort 	+' ,\n')
+datafile.write('		"RefreshInt":'+RefreshInt+' \n')
 datafile.write('	         },  		            \n')
 datafile.write('	"bounds":{	 		    \n')
 datafile.write('		"ne_lat":'+AppNeLat	+', \n')
@@ -105,3 +112,4 @@ datafile.write('	         }  		            \n')
 datafile.write('}  		         		    \n')
 datafile.close()
 # --------------------------------------#
+os.system("cp configjson.js config.json")
