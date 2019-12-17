@@ -93,6 +93,7 @@ if(file_exists($file)){
 	imagesavealpha($image, true);
 	//header( 'Content-Type: image/png' );
 	//imagePNG($image, $file);
+	header( 'Content-Type: image/png' );
 	imagePNG($image);
 }
 ?>
