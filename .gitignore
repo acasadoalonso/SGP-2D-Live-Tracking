@@ -8,3 +8,4 @@ config.json
 configjson.js
 main/
 sscommit.sh
+__pycache__
