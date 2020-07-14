@@ -4,18 +4,16 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set("UTC");
-//include ("node/config.php");
 include ("node/imageSmoothArc.php");
-$servername="localhost";
-$DBuser="ogn";
-$DBpasswd="ogn";
-$dbname="APRSLOG";
+
+require_once  'node/config.php';
+$station='LECD';
 
 if (isset($_GET['station']))
         $station = $_GET['station'];
-	
+        
 $query="select idrec, otime from RECEIVERS_STATUS where idrec = '".$station."' order by `otime` desc ;"; 
-$db = new mysqli($servername, $DBuser, $DBpasswd, $dbname);
+$db = new mysqli($servername, $DBuserread, $DBpasswdread, $dbname);
 
 $results = $db->query($query);
 $txt="NOT FOUND";
@@ -34,15 +32,15 @@ if ($results->num_rows > 0)
    $txt2=date("Y-d-m H:i\Z", strtotime($otime));
    if ($diff  > 720)
         {
-			$txt="Down since";
-			$cColor=array(255,0,0,0);
-			$txt2=date("Y-m-d H:i\Z", strtotime($otime));
+                        $txt="Down since";
+                        $cColor=array(255,0,0,0);
+                        $txt2=date("Y-m-d H:i\Z", strtotime($otime));
         }
    else
         {
-			$txt="Last heartbeat";
-			$txt2=date("Y-m-d H:i\Z", strtotime($otime));
-			$cColor=array(0,128,0,0);
+                        $txt="Last heartbeat";
+                        $txt2=date("Y-m-d H:i\Z", strtotime($otime));
+                        $cColor=array(0,128,0,0);
         }
    }
 
