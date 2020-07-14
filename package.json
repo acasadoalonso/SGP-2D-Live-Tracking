@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/acasadoalonso/SGP-2D-Live-Tracking/issues"
   },
-  "homepage": "https://github.com/acasadoalonso/SGP-2D-Live-Tracking#readme"
+  "homepage": "https://github.com/acasadoalonso/SGP-2D-Live-Tracking#readme",
+  "dependencies": {
+    "bower": "^1.8.8"
+  }
 }
