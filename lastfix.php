@@ -7,13 +7,21 @@ date_default_timezone_set("UTC");
 include ("node/config.php");
 if (isset($_GET['ID']))
         {
-        $ID = $_GET['ID'];
+        $ID = strtoupper($_GET['ID']);
+        $query="SELECT  * FROM `GLIDERS_POSITIONS` where flarmId = '".$ID."' ORDER BY lastFixTx DESC ;";
+        }
+elseif (isset($_GET['id']))
+        {
+        $ID = strtoupper($_GET['id']);
         $query="SELECT  * FROM `GLIDERS_POSITIONS` where flarmId = '".$ID."' ORDER BY lastFixTx DESC ;";
         }
 elseif (isset($_GET['REG']))
         {
-        $REG = $_GET['REG'];
-        $query1="SELECT  idglider FROM `GLIDERS` where registration = '".$REG."' ;";
+        $REG = strtoupper($_GET['REG']);
+        }
+elseif (isset($_GET['reg']))
+        {
+        $REG = strtoupper($_GET['reg']);
         }
 else
         {
@@ -21,8 +29,9 @@ else
         }
 $db = new mysqli($servername, $DBuser, $DBpasswd, $dbname);
 
-if (isset($_GET['REG']))
+if (isset($_GET['REG']) or isset($_GET['reg']))
         {
+        $query1="SELECT  idglider FROM `GLIDERS` where registration = '".$REG."' ;";
         $results = $db->query($query1);
         if ($results->num_rows > 0) 
             {
