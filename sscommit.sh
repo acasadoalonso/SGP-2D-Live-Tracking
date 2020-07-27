@@ -1,4 +1,5 @@
 #!/bin/bash
 git add .
 git commit
-git push origin oldver
+git push origin master
+
