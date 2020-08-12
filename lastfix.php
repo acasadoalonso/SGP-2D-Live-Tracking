@@ -15,6 +15,16 @@ elseif (isset($_GET['id']))
         $ID = strtoupper($_GET['id']);
         $query="SELECT  * FROM `GLIDERS_POSITIONS` where flarmId = '".$ID."' ORDER BY lastFixTx DESC ;";
         }
+elseif (isset($_GET['STATION']))
+        {
+        $ST = strtoupper($_GET['STATION']);
+        $query="SELECT  * FROM `GLIDERS_POSITIONS` where station = '".$ST."' ORDER BY lastFixTx DESC ;";
+        }
+elseif (isset($_GET['station']))
+        {
+        $ST = strtoupper($_GET['station']);
+        $query="SELECT  * FROM `GLIDERS_POSITIONS` where station = '".$ST."' ORDER BY lastFixTx DESC ;";
+        }
 elseif (isset($_GET['REG']))
         {
         $REG = strtoupper($_GET['REG']);
@@ -40,6 +50,7 @@ if (isset($_GET['REG']) or isset($_GET['reg']))
             $ID=$row[0];
             $query2="SELECT  * FROM `GLIDERS_POSITIONS` where substr(flarmId,4) = '".$ID."' ORDER BY lastFixTx DESC ;";
             $results = $db->query($query2);
+            header('Content-Type: application/json');
             }
         }
 else
@@ -50,18 +61,14 @@ $last[0]="";
 $i=0;
 if ($results->num_rows > 0) 
    {
+   echo '{"lastfix":[';
    while($row=$results->fetch_assoc()) {
-	//$jsondata =json_encode($row);
-	//echo $jsondata;
-
-	$last[$i]=$row;
-	$i = $i+1;
+        $jsondata =json_encode($row,JSON_PRETTY_PRINT);
+        echo $jsondata;
+        echo ',';
    	}
    }	
-echo '{"lastfix":';
-$jsondata =json_encode($last);
-echo $jsondata;
-echo '}';
+echo '{}]}';
 
 
 $db->close(); 
