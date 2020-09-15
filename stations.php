@@ -42,7 +42,7 @@ if ($results->num_rows > 0)
 	$station["lg"] = $long;
 	$station["ut"] = $ttt;
 	$tsta     =strtotime($otime);
-   	$tnow     =time() ;
+   	$tnow     =time() - date("Z");
    	$diff     =$tnow-$tsta;
 	if ($diff > 7200)
 		{
