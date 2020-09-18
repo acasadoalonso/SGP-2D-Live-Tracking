@@ -4,7 +4,7 @@
 
 if ( $_SERVER['HTTP_X_GITHUB_EVENT'] == 'push') {
         ob_start();
-        passthru("/usr/bin/git --no-pager pull origin master");
+        passthru("/usr/bin/git --no-pager pull origin oldver");
         $var = ob_get_contents();
         passthru("touch UPDATED.by.GIT");
         ob_end_clean(); 
