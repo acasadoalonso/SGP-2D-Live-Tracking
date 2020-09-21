@@ -9,4 +9,4 @@ configjson.js
 main/
 sslink.sh
 sscommit.sh
-__pycache__
+__pycache__/
