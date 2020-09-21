@@ -45,9 +45,9 @@ OGNDB                   = cfg.get('server', 'OGNDB').strip("'").strip('"')
 AppUrl                  = cfg.get('server', 'AppUrl').strip("'").strip('"')
 AppPort                 = cfg.get('server', 'AppPort').strip("'").strip('"')
 try:
-	RefreshInt      = cfg.get('server', 'RefreshInt').strip("'").strip('"')
+	RefreshInt      = str(cfg.get('server', 'RefreshInt').strip("'").strip('"'))
 except:
-	RefreshInt      = 10000
+	RefreshInt      = '10000'
 #AppArea                 = cfg.get('server', 'AppArea').strip("'").strip('"')
 AppNeLat                = cfg.get('server', 'AppNeLat')
 AppNeLon                = cfg.get('server', 'AppNeLon')

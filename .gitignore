@@ -3,6 +3,7 @@ heatmapsIGCOGN/
 node_modules/
 nohup.out
 2D*
+config.py
 config.php
 config.json
 configjson.js
