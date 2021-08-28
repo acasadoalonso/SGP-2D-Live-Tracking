@@ -655,7 +655,7 @@ var tx={}, rx={}, wp={};
 var busy=false;
 var appurl =getappurl();
 var appport=getappport();
-socketurl=appurl+':'+appport;
+socketurl='localhost'+':'+appport;
 var socket = io.connect(socketurl, { query: "platform=desktop"});
 $(document).off('click', '.colorSelector').on('click', '.colorSelector', function(){
 	$.cookie($(this).attr("type"), $(this).attr("index"))
@@ -1656,7 +1656,7 @@ function createStations(){
 	var jsonString=JSON.stringify(stations)
 	var stationList="#blank "
 	$.each(rx, function(i, item) {
-		var stationIcon=(item.age>60*5) ? 0 : 1;
+		var stationIcon=(item.age>60*10) ? 0 : 1;
 		var distance=(Math.round(item.maxDistance*10)/10)
 		$node='<div class="receiver" station="' + item.station + '" id="station' + item.station + '" lat="' + item.lat + '" lon="' + item.lon + '"><div class="receiversIcon" id="stationIcon' + item.station + '"></div><div class="receiversData"><div class="receiversStation"><strong>' + 
 			item.station + '</strong><br>Max Dist: ' + distance + ' km</div></div></div>'
@@ -1672,7 +1672,7 @@ function createStations(){
 				position: myLatLng,
 				title: item.station,
 				icon: {
-					url: parseInt(item.age>60*5) ? "/node/img/antenna0.png" : "/node/img/antenna1.png",
+					url: parseInt(item.age>60*10) ? "/node/img/antenna0.png" : "/node/img/antenna1.png",
 					size: new google.maps.Size(20,20),
 					origin: new google.maps.Point(0,0),
 					anchor: new google.maps.Point(10,10)
@@ -1695,7 +1695,7 @@ function createStations(){
 			var marker=item.marker;
 			marker.setIcon({
 				//url:"/node/img/tow.svg",
-				url: parseInt(item.age)>60*5 ? "/node/img/antenna0.png" : "/node/img/antenna1.png",
+				url: parseInt(item.age)>60*10 ? "/node/img/antenna0.png" : "/node/img/antenna1.png",
 				size: new google.maps.Size(20,20),
 				origin: new google.maps.Point(0,0),
 				anchor: new google.maps.Point(10,10)

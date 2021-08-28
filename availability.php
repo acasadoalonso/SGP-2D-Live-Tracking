@@ -44,7 +44,6 @@ if ($results->num_rows > 0)
         }
    }
 
-
 $image = imageCreateTrueColor( 230, 30 );
 imagealphablending($image,true);
 $color = imageColorAllocate( $image, 255,255,255);

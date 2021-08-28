@@ -272,7 +272,11 @@ if($FLAG==''){
 	if ($result2->num_rows > 0) {
 	
 		while($r2 = $result2->fetch_assoc()) {
-			$todaysFlarms=$todaysFlarms.", '".$r2["flarmId"]."'";
+                        $fid = substr($r2["flarmId"], 0,3);
+                        if ($fid == "FLR" or $fid == "ICA" or $fid == "OGN")
+                        {
+                                $todaysFlarms=$todaysFlarms.", '".$r2["flarmId"]."'";
+                        }
 		}
 	}
 	$todaysFlarms=$todaysFlarms.") ";
